@@ -1,20 +1,49 @@
-# Base44 App
+# Innovalogic.tech
 
+Personal portfolio and consulting website for Dario Meneses / Innovalogic.tech.
 
-This app was created automatically by Base44.
-It's a Vite+React app that communicates with the Base44 API.
+This site presents selected software projects, applied automation work, AI-focused services, a lightweight working process, and contact paths for new collaborations.
 
-## Running the app
+## Stack
+
+- React 18
+- Vite
+- Tailwind CSS
+- Lucide React icons
+
+## Local development
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Building the app
+On Windows PowerShell, use `npm.cmd` if script execution policies block `npm.ps1`:
+
+```bash
+npm.cmd run dev
+```
+
+## Quality checks
+
+```bash
+npm run lint
+npm run build
+```
+
+## Project structure
+
+- `src/App.jsx` contains the current one-page portfolio experience.
+- `src/App.css` contains small global interaction and layout helpers.
+- `src/index.css` loads Tailwind and shared design tokens.
+- `public/favicon.svg` provides the site icon.
+
+## Deployment
+
+The production build is generated in `dist/`:
 
 ```bash
 npm run build
 ```
 
-For more information and support, please contact Base44 support at app@base44.com.
+The site is designed to be hosted as a static Vite build.

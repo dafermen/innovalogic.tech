@@ -5,9 +5,9 @@ import { Link, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Home, Newspaper, Briefcase, Package, FolderOpen, Info, Mail, Menu, X, Linkedin, Twitter, Facebook } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import LanguageToggle from './components/common/LanguageToggle';
-import { LanguageProvider, useLanguage } from './components/i18n/LanguageContext';
-import { useTranslation } from './components/i18n/translations';
+import LanguageToggle from '@/components/common/LanguageToggle';
+import { LanguageProvider, useLanguage } from '@/components/i18n/LanguageContext';
+import { useTranslation } from '@/components/i18n/translations';
 
 function MainLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
