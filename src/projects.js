@@ -1,4 +1,4 @@
-// Project facts reviewed against local documentation and the GitHub profile, 2026-10-01.
+// Project links verified against the deployed sites, 2026-10-02.
 export const projects = [
   {
     "name": "FollowRead",
@@ -111,12 +111,14 @@ export const projects = [
       "es": "Extensión de Chrome que lee texto seleccionado o páginas web en voz alta con el motor de voz del navegador.",
       "en": "Chrome extension that reads selected text or web pages aloud using the browser's speech engine."
     },
-    "repoUrl": "https://github.com/dafermen/SmartRead"
+    "repoUrl": "https://github.com/dafermen/SmartRead",
+    "liveUrl": "https://smartread.innovalogic.tech/",
+    "linkType": "installation"
   },
   {
     "name": "SpeakFlowAI",
     "category": "learning",
-    "status": "local",
+    "status": "protected",
     "stack": [
       "React",
       "FastAPI",
@@ -126,7 +128,9 @@ export const projects = [
       "es": "Práctica personal de conversación en inglés con voz en tiempo real, alternativa escrita local, retroalimentación y progreso.",
       "en": "Personal English conversation practice with real-time voice, local text practice, feedback, and progress tracking."
     },
-    "repoUrl": "https://github.com/dafermen/SpeakFlowAI"
+    "repoUrl": "https://github.com/dafermen/SpeakFlowAI",
+    "liveUrl": "https://speakflowai.innovalogic.tech/",
+    "linkType": "protected"
   },
   {
     "name": "DMV NY Practice — Método Mogollón",
@@ -222,7 +226,9 @@ export const projects = [
     "summary": {
       "es": "Plataforma de GPS y gestión de flotas con mapas, telemetría, geocercas, alertas y administración de organizaciones.",
       "en": "GPS and fleet-management platform with maps, telemetry, geofences, alerts, and organization management."
-    }
+    },
+    "liveUrl": "https://ruteza.innovalogic.tech/",
+    "linkType": "protected"
   },
   {
     "name": "WorkDay Assistant",
@@ -237,7 +243,9 @@ export const projects = [
       "es": "Herramienta de jornada para técnicos de ServiceNow. La lógica de cálculo y los primeros controles están implementados; la interfaz completa sigue en desarrollo.",
       "en": "Workday timing tool for ServiceNow technicians; calculation logic and initial UI components are implemented, with the full interface in development."
     },
-    "repoUrl": "https://github.com/dafermen/WorkDayAssistant"
+    "repoUrl": "https://github.com/dafermen/WorkDayAssistant",
+    "liveUrl": "https://workdayassistant.innovalogic.tech/",
+    "linkType": "preview"
   },
   {
     "name": "Nexo",
@@ -266,25 +274,33 @@ export const projects = [
       "SQLite"
     ],
     "summary": {
-      "es": "Panel local para aprobaciones humanas, observación de repositorios, historial de tareas y políticas de desarrollo. La ejecución de proveedores aún está fuera del alcance actual.",
-      "en": "Local control plane for human approvals, repository observation, task history, and development policies. Provider execution remains outside the current scope."
+      "es": "Panel de control para aprobaciones humanas, observación de repositorios, historial de tareas y políticas de desarrollo. La ejecución de proveedores aún está fuera del alcance actual.",
+      "en": "Control panel for human approvals, repository observation, task history, and development policies. Provider execution remains outside the current scope."
     },
-    "repoUrl": "https://github.com/dafermen/AI-Dev-Control"
+    "repoUrl": "https://github.com/dafermen/AI-Dev-Control",
+    "liveUrl": "https://aidevcontrol.innovalogic.tech/",
+    "linkType": "protected"
   },
   {
     "name": "avDownloader",
     "category": "web",
-    "status": "local",
+    "status": "pilot",
     "stack": [
       "Node.js",
       "FFmpeg",
       "yt-dlp"
     ],
     "summary": {
-      "es": "Herramienta local para fuentes de video público compatibles y para recortar, unir y convertir archivos de video y audio.",
-      "en": "Local media utility for supported public video sources and for trimming, joining, and transcoding video and audio files."
+      "es": "Herramienta multimedia para fuentes de video público compatibles y para recortar, unir y convertir archivos de video y audio.",
+      "en": "Media utility for supported public video sources and for trimming, joining, and transcoding video and audio files."
     },
-    "repoUrl": "https://github.com/dafermen/avDownloader"
+    "repoUrl": "https://github.com/dafermen/avDownloader",
+    "liveUrl": "https://avdownloader.innovalogic.tech/",
+    "linkType": "protected",
+    "accessNote": {
+      "es": "Piloto con clave disponible hasta el 9 de octubre de 2026.",
+      "en": "Key-protected pilot available through October 9, 2026."
+    }
   },
   {
     "name": "InnovaLogic",

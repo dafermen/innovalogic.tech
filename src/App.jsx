@@ -35,7 +35,7 @@ const content = {
     },
     projectLinks: {
       demo: 'Abrir demo', landing: 'Presentación', pilot: 'Acceso al piloto', website: 'Visitar sitio',
-      repo: 'Ver repo',
+      repo: 'Ver repo', protected: 'Demo con clave', installation: 'Instalación y docs', preview: 'Ver avance',
     },
     proof: [
       ['Full-stack', 'React, Node, .NET, APIs y productos web'],
@@ -44,7 +44,7 @@ const content = {
       ['Producto', 'MVPs, apps publicables y herramientas para negocio'],
     ],
     categories: { all: 'Todos', learning: 'Aprendizaje y accesibilidad', operations: 'Datos y productividad', ai: 'IA y conversación', web: 'Multimedia y sitios web' },
-    statuses: { demo: 'Demo web', code: 'Código público', extension: 'Extensión Chrome', local: 'Aplicación local', desktop: 'Escritorio Windows', private: 'Desarrollo privado', development: 'En desarrollo', pilot: 'Piloto con acceso', website: 'Sitio web' },
+    statuses: { protected: 'Demo con clave', demo: 'Demo web', code: 'Código público', extension: 'Extensión Chrome', local: 'Aplicación local', desktop: 'Escritorio Windows', private: 'Desarrollo privado', development: 'En desarrollo', pilot: 'Piloto con acceso', website: 'Sitio web' },
     filterLabel: 'Filtrar proyectos por temática', countLabel: 'proyectos', repoLabel: 'repositorios públicos', privateNote: 'Código no público',
     navLabel: 'Navegación principal', menuLabel: 'Abrir o cerrar menú', languageAria: 'Switch to English',
     signalTitle: 'Un portafolio para explorar', signalBody: 'Aprendizaje, productividad, operaciones e IA aplicada. Conoce cada proyecto y consulta su código o demostración disponible.',
@@ -106,7 +106,7 @@ const content = {
     },
     projectLinks: {
       demo: 'Open demo', landing: 'Landing page', pilot: 'Pilot access', website: 'Visit website',
-      repo: 'View repo',
+      repo: 'View repo', protected: 'Demo with access key', installation: 'Installation & docs', preview: 'View progress',
     },
     proof: [
       ['Full-stack', 'React, Node, .NET, APIs and web products'],
@@ -115,7 +115,7 @@ const content = {
       ['Product', 'MVPs, shippable apps and business tools'],
     ],
     categories: { all: 'All', learning: 'Learning and accessibility', operations: 'Data and productivity', ai: 'AI and conversation', web: 'Media and websites' },
-    statuses: { demo: 'Web demo', code: 'Public code', extension: 'Chrome extension', local: 'Local application', desktop: 'Windows desktop', private: 'Private development', development: 'In development', pilot: 'Restricted pilot', website: 'Website' },
+    statuses: { protected: 'Key-protected demo', demo: 'Web demo', code: 'Public code', extension: 'Chrome extension', local: 'Local application', desktop: 'Windows desktop', private: 'Private development', development: 'In development', pilot: 'Restricted pilot', website: 'Website' },
     filterLabel: 'Filter projects by topic', countLabel: 'projects', repoLabel: 'public repositories', privateNote: 'Code not public',
     navLabel: 'Main navigation', menuLabel: 'Open or close menu', languageAria: 'Cambiar a español',
     signalTitle: 'A portfolio to explore', signalBody: 'Learning, productivity, operations, and applied AI. Explore each project and its available code or demonstration.',
@@ -353,6 +353,7 @@ function App() {
                     </span>
                   </div>
                   <p className="mt-5 text-base leading-7 text-[#475569]">{project.summary[language]}</p>
+                  {project.accessNote && <p className="mt-3 text-sm font-semibold text-[#475569]">{project.accessNote[language]}</p>}
                   <div className="mt-5 flex flex-wrap gap-2">
                     {project.stack.map((item) => (
                       <span key={item} className="rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-bold text-[#475569]">
