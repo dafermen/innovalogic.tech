@@ -61,3 +61,7 @@ Before publishing, run lint and build, then check desktop/mobile layouts, both l
 The existing Nginx site serves `/var/www/innovalogic.tech/public_html`. Publish only `dist/`: back up the current directory, copy hashed assets first without deleting previous assets, then replace `index.html` atomically. Keep the backup for rollback; this site update does not require a change to Nginx or its TLS configuration.
 
 Hosted links updated on 2026-10-02: AI Dev Control, Ruteza, SpeakFlowAI and avDownloader use key-protected demo access. SmartRead links to extension installation/documentation; WorkDay Assistant links to its in-progress preview. The avDownloader pilot is authorized through October 9, 2026; retain that date in both translations and recheck availability before extending the listing. Repository website fields and the GitHub profile use the same destinations. Never publish access keys.
+
+## DOC-STD-20261002 — Documentation navigation
+
+Use the [documentation map](DOCUMENTATION.md) for authoritative sources, reading paths and project-specific maintenance rules.
