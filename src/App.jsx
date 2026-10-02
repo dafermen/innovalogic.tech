@@ -1,9 +1,9 @@
 import './App.css';
+import { projects } from './projects';
 import {
   ArrowRight,
   BrainCircuit,
   BriefcaseBusiness,
-  CheckCircle2,
   Code2,
   Cpu,
   ExternalLink,
@@ -18,7 +18,7 @@ import {
   TerminalSquare,
   X,
 } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 const content = {
   es: {
@@ -28,13 +28,13 @@ const content = {
       eyebrow: 'Innovalogic.tech · Portafolio y consultoría técnica',
       title: 'Construyo software práctico, automatización e IA aplicada para problemas reales.',
       body:
-        'Soy Dario Meneses. Diseño y desarrollo productos, herramientas internas y sistemas que conectan datos, operaciones y decisiones. Esta es la nueva casa de mi trabajo: menos página genérica, más evidencia.',
+        'Soy Dario Meneses. Diseño y desarrollo productos, herramientas internas y sistemas que conectan datos, operaciones y decisiones. Aquí encontrarás proyectos, demostraciones y código para conocer mi trabajo.',
       primary: 'Ver portafolio',
       secondary: 'Hablemos de una idea',
       github: 'Ver GitHub',
     },
     projectLinks: {
-      live: 'Abrir demo',
+      demo: 'Abrir demo', landing: 'Presentación', pilot: 'Acceso al piloto', website: 'Visitar sitio',
       repo: 'Ver repo',
     },
     proof: [
@@ -43,83 +43,17 @@ const content = {
       ['IA aplicada', 'LLMs, asistentes, análisis y experiencias inteligentes'],
       ['Producto', 'MVPs, apps publicables y herramientas para negocio'],
     ],
-    portfolioTitle: 'Trabajo seleccionado',
+    categories: { all: 'Todos', learning: 'Aprendizaje y accesibilidad', operations: 'Datos y productividad', ai: 'IA y conversación', web: 'Multimedia y sitios web' },
+    statuses: { demo: 'Demo web', code: 'Código público', extension: 'Extensión Chrome', local: 'Aplicación local', desktop: 'Escritorio Windows', private: 'Desarrollo privado', development: 'En desarrollo', pilot: 'Piloto con acceso', website: 'Sitio web' },
+    filterLabel: 'Filtrar proyectos por temática', countLabel: 'proyectos', repoLabel: 'repositorios públicos', privateNote: 'Código no público',
+    navLabel: 'Navegación principal', menuLabel: 'Abrir o cerrar menú', languageAria: 'Switch to English',
+    signalTitle: 'Un portafolio para explorar', signalBody: 'Aprendizaje, productividad, operaciones e IA aplicada. Conoce cada proyecto y consulta su código o demostración disponible.',
+    portfolioTitle: 'Explora mis proyectos',
     portfolioIntro:
-      'Proyectos reales publicados en GitHub y en el servidor de pruebas de Innovalogic: productividad, aprendizaje, automatización, monitoreo y experiencias útiles.',
-    projects: [
-      {
-        name: 'TaskPilot',
-        status: 'Publicado',
-        summary:
-          'Aplicación para organizar tareas, priorizar trabajo y mantener claridad sobre lo que sigue.',
-        stack: ['React', 'Productivity UX', 'Task management', 'Workflow'],
-        impact: 'Convierte listas dispersas en una experiencia enfocada para ejecutar trabajo diario.',
-        liveUrl: 'https://taskpilot.innovalogic.tech',
-        repoUrl: 'https://github.com/dafermen/TaskPilot',
-      },
-      {
-        name: 'SmartQuiz',
-        status: 'Publicado',
-        summary:
-          'Herramienta educativa para practicar con preguntas, validar conocimiento y reforzar aprendizaje.',
-        stack: ['React', 'Education', 'Quiz engine', 'Content systems'],
-        impact: 'Transforma contenido de estudio en práctica medible y fácil de repetir.',
-        liveUrl: 'https://smartquiz.innovalogic.tech/home',
-        repoUrl: 'https://github.com/dafermen/SmartQuiz',
-      },
-      {
-        name: 'SmartTense',
-        status: 'Publicado',
-        summary:
-          'Aplicación de aprendizaje para practicar tiempos verbales y mejorar dominio del inglés con ejercicios estructurados.',
-        stack: ['React', 'Language learning', 'Practice flow', 'Mobile UX'],
-        impact: 'Hace que la práctica gramatical sea más clara, guiada y constante.',
-        liveUrl: 'https://smarttense.innovalogic.tech',
-        repoUrl: 'https://github.com/dafermen/SmartTense',
-      },
-      {
-        name: 'DMV NY Practice',
-        status: 'Privado · Demo pública',
-        summary:
-          'Software para estudiar, practicar y prepararse para aprobar el examen del DMV en New York.',
-        stack: ['React', 'Education', 'DMV prep', 'Bilingual UX'],
-        impact: 'Organiza teoría, práctica y progreso en una herramienta simple para estudiantes.',
-        liveUrl: 'https://dmv.innovalogic.tech/',
-        privateNote: 'Repositorio privado',
-      },
-      {
-        name: 'Netwatch Lite',
-        status: 'Próximo lanzamiento',
-        summary:
-          'Herramienta para monitoreo, reportes e integraciones operativas con foco en claridad, historial y acciones rápidas.',
-        stack: ['React', '.NET', 'Capacitor', 'Reports', 'Automation'],
-        impact: 'Convierte datos técnicos en una superficie entendible para operar y decidir.',
-        liveUrl: 'https://netwatch.innovalogic.tech/',
-        repoUrl: 'https://github.com/dafermen/netwatch-lite',
-      },
-      {
-        name: 'Netwatch Wallboard',
-        status: 'Repositorio público',
-        summary:
-          'Vista de pared para monitorear estados, actividad y señales clave en tiempo real o casi real.',
-        stack: ['Dashboard', 'Data visualization', 'Realtime UX'],
-        impact: 'Ayuda a equipos a ver lo importante sin navegar por sistemas complejos.',
-        repoUrl: 'https://github.com/dafermen/netwatch-lite-wallboard',
-      },
-      {
-        name: 'Innovalogic.tech Rebuild',
-        status: 'Marca y plataforma',
-        summary:
-          'Reconstrucción de esta presencia digital como portafolio vivo, base de consultoría y archivo de casos de estudio.',
-        stack: ['React', 'Content strategy', 'SEO', 'Design system'],
-        impact: 'Transforma una página genérica en una plataforma que comunica criterio y trabajo real.',
-        liveUrl: 'https://innovalogic.tech/',
-        repoUrl: 'https://github.com/dafermen/innovalogic.tech',
-      },
-    ],
+      'Aplicaciones web, herramientas locales y productos en desarrollo. Filtra por temática y descubre qué puedes probar, instalar o explorar en GitHub.',
     servicesTitle: 'Servicios que podemos activar',
     servicesIntro:
-      'No necesito venderlo como una mega agencia. La oferta puede crecer desde lo que ya sabes hacer: construir, integrar, automatizar y explicar.',
+      'Te ayudo a convertir una necesidad en una solución concreta: desarrollar un producto, conectar herramientas o simplificar un proceso.',
     services: [
       {
         icon: Code2,
@@ -165,13 +99,13 @@ const content = {
       eyebrow: 'Innovalogic.tech · Portfolio and technical consulting',
       title: 'I build practical software, automation and applied AI for real problems.',
       body:
-        'I am Dario Meneses. I design and build products, internal tools and systems that connect data, operations and decisions. This is the new home for my work: less generic website, more evidence.',
+        'I am Dario Meneses. I design and build products, internal tools and systems that connect data, operations and decisions. Explore my projects, demonstrations, and code to see what I build.',
       primary: 'View portfolio',
       secondary: 'Discuss an idea',
       github: 'View GitHub',
     },
     projectLinks: {
-      live: 'Open demo',
+      demo: 'Open demo', landing: 'Landing page', pilot: 'Pilot access', website: 'Visit website',
       repo: 'View repo',
     },
     proof: [
@@ -180,83 +114,17 @@ const content = {
       ['Applied AI', 'LLMs, assistants, analysis and intelligent experiences'],
       ['Product', 'MVPs, shippable apps and business tools'],
     ],
-    portfolioTitle: 'Selected work',
+    categories: { all: 'All', learning: 'Learning and accessibility', operations: 'Data and productivity', ai: 'AI and conversation', web: 'Media and websites' },
+    statuses: { demo: 'Web demo', code: 'Public code', extension: 'Chrome extension', local: 'Local application', desktop: 'Windows desktop', private: 'Private development', development: 'In development', pilot: 'Restricted pilot', website: 'Website' },
+    filterLabel: 'Filter projects by topic', countLabel: 'projects', repoLabel: 'public repositories', privateNote: 'Code not public',
+    navLabel: 'Main navigation', menuLabel: 'Open or close menu', languageAria: 'Cambiar a español',
+    signalTitle: 'A portfolio to explore', signalBody: 'Learning, productivity, operations, and applied AI. Explore each project and its available code or demonstration.',
+    portfolioTitle: 'Explore my projects',
     portfolioIntro:
-      'Real projects published on GitHub and the Innovalogic staging server: productivity, learning, automation, monitoring and useful experiences.',
-    projects: [
-      {
-        name: 'TaskPilot',
-        status: 'Published',
-        summary:
-          'An app for organizing tasks, prioritizing work and keeping clarity around what comes next.',
-        stack: ['React', 'Productivity UX', 'Task management', 'Workflow'],
-        impact: 'Turns scattered lists into a focused experience for executing daily work.',
-        liveUrl: 'https://taskpilot.innovalogic.tech',
-        repoUrl: 'https://github.com/dafermen/TaskPilot',
-      },
-      {
-        name: 'SmartQuiz',
-        status: 'Published',
-        summary:
-          'An education tool for practicing with questions, validating knowledge and reinforcing learning.',
-        stack: ['React', 'Education', 'Quiz engine', 'Content systems'],
-        impact: 'Turns study content into measurable practice that is easy to repeat.',
-        liveUrl: 'https://smartquiz.innovalogic.tech/home',
-        repoUrl: 'https://github.com/dafermen/SmartQuiz',
-      },
-      {
-        name: 'SmartTense',
-        status: 'Published',
-        summary:
-          'A learning app for practicing verb tenses and improving English through structured exercises.',
-        stack: ['React', 'Language learning', 'Practice flow', 'Mobile UX'],
-        impact: 'Makes grammar practice clearer, more guided and easier to keep consistent.',
-        liveUrl: 'https://smarttense.innovalogic.tech',
-        repoUrl: 'https://github.com/dafermen/SmartTense',
-      },
-      {
-        name: 'DMV NY Practice',
-        status: 'Private · Public demo',
-        summary:
-          'Software for studying, practicing and preparing to pass the New York DMV exam.',
-        stack: ['React', 'Education', 'DMV prep', 'Bilingual UX'],
-        impact: 'Organizes theory, practice and progress into a simple tool for students.',
-        liveUrl: 'https://dmv.innovalogic.tech/',
-        privateNote: 'Private repository',
-      },
-      {
-        name: 'Netwatch Lite',
-        status: 'Coming soon',
-        summary:
-          'A tool for monitoring, reports and operational integrations focused on clarity, history and fast actions.',
-        stack: ['React', '.NET', 'Capacitor', 'Reports', 'Automation'],
-        impact: 'Turns technical data into a clear surface for operating and deciding.',
-        liveUrl: 'https://netwatch.innovalogic.tech/',
-        repoUrl: 'https://github.com/dafermen/netwatch-lite',
-      },
-      {
-        name: 'Netwatch Wallboard',
-        status: 'Public repository',
-        summary:
-          'A wallboard view for monitoring status, activity and key signals in real time or near real time.',
-        stack: ['Dashboard', 'Data visualization', 'Realtime UX'],
-        impact: 'Helps teams see what matters without digging through complex systems.',
-        repoUrl: 'https://github.com/dafermen/netwatch-lite-wallboard',
-      },
-      {
-        name: 'Innovalogic.tech Rebuild',
-        status: 'Brand and platform',
-        summary:
-          'Rebuilding this digital presence into a living portfolio, consulting base and case study archive.',
-        stack: ['React', 'Content strategy', 'SEO', 'Design system'],
-        impact: 'Turns a generic page into a platform that communicates judgment and real work.',
-        liveUrl: 'https://innovalogic.tech/',
-        repoUrl: 'https://github.com/dafermen/innovalogic.tech',
-      },
-    ],
+      'Web applications, local tools, and products under development. Browse by topic to find what you can try, install, or explore on GitHub.',
     servicesTitle: 'Services we can activate',
     servicesIntro:
-      'This does not need to sound like a giant agency. The offer can grow from what you already do well: build, integrate, automate and explain.',
+      'I help turn a practical need into a working solution: build a product, connect tools, or simplify a process.',
     services: [
       {
         icon: Code2,
@@ -307,6 +175,14 @@ function App() {
   const [language, setLanguage] = useState('en');
   const [menuOpen, setMenuOpen] = useState(false);
   const t = content[language];
+  const [category, setCategory] = useState('all');
+  const visibleProjects = projects.filter((project) => category === 'all' || project.category === category);
+  useEffect(() => { document.documentElement.lang = language; }, [language]);
+  useEffect(() => {
+    const closeOnEscape = (event) => { if (event.key === 'Escape') setMenuOpen(false); };
+    document.addEventListener('keydown', closeOnEscape);
+    return () => document.removeEventListener('keydown', closeOnEscape);
+  }, []);
   const mailSubject = useMemo(
     () => encodeURIComponent(language === 'es' ? 'Hablemos de un proyecto' : 'Let us discuss a project'),
     [language],
@@ -314,7 +190,7 @@ function App() {
 
   const goTo = (id) => {
     setMenuOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById(id)?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
   };
 
   return (
@@ -331,7 +207,7 @@ function App() {
             </span>
           </button>
 
-          <nav className="hidden items-center gap-1 md:flex">
+          <nav aria-label={t.navLabel} className="hidden items-center gap-1 md:flex">
             {t.nav.map((item, index) => (
               <button
                 key={item}
@@ -347,7 +223,7 @@ function App() {
             <button
               onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
               className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-2 text-sm font-bold shadow-sm transition hover:border-black/20"
-              aria-label="Toggle language"
+              aria-label={t.languageAria}
             >
               <Globe2 className="h-4 w-4" />
               {t.languageLabel}
@@ -355,14 +231,16 @@ function App() {
             <button
               className="grid h-10 w-10 place-items-center rounded-full border border-black/10 bg-white md:hidden"
               onClick={() => setMenuOpen((value) => !value)}
-              aria-label="Toggle navigation"
+              aria-label={t.menuLabel}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
             >
               {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
         {menuOpen && (
-          <div className="border-t border-black/10 bg-[#f5f8fb] px-5 py-4 md:hidden">
+          <div id="mobile-navigation" className="border-t border-black/10 bg-[#f5f8fb] px-5 py-4 md:hidden">
             <div className="mx-auto grid max-w-7xl gap-2">
               {t.nav.map((item, index) => (
                 <button
@@ -421,13 +299,12 @@ function App() {
               <div className="rounded-xl border border-white/10 bg-[#162033] p-5">
                 <div className="mb-4 flex items-center gap-2 text-sm text-[#67e8f9]">
                   <TerminalSquare className="h-4 w-4" />
-                  portfolio.signal
+                  {t.signalTitle}
                 </div>
-                <div className="space-y-3 font-mono text-sm leading-7 text-[#dbeafe]">
-                  <p><span className="text-[#67e8f9]">builder</span>: Dario Meneses</p>
-                  <p><span className="text-[#67e8f9]">focus</span>: software + automation + applied_ai</p>
-                  <p><span className="text-[#67e8f9]">mode</span>: practical, shippable, clear</p>
-                  <p><span className="text-[#67e8f9]">next</span>: portfolio {'->'} services {'->'} case_studies</p>
+                <p className="text-base leading-7 text-[#dbeafe]">{t.signalBody}</p>
+                <div className="mt-6 grid grid-cols-2 gap-4">
+                  <div><strong className="block text-4xl">{projects.length}</strong><span className="text-sm text-white/70">{t.countLabel}</span></div>
+                  <div><strong className="block text-4xl">{projects.filter((project) => project.repoUrl).length}</strong><span className="text-sm text-white/70">{t.repoLabel}</span></div>
                 </div>
               </div>
               <div className="mt-4 grid grid-cols-2 gap-3">
@@ -452,13 +329,22 @@ function App() {
               <p className="max-w-2xl text-lg leading-8 text-[#64748b]">{t.portfolioIntro}</p>
             </div>
 
+            <div className="mb-6 flex flex-wrap gap-2" role="group" aria-label={t.filterLabel}>
+              {Object.entries(t.categories).map(([key, label]) => (
+                <button key={key} type="button" aria-pressed={category === key} onClick={() => setCategory(key)}
+                  className={`rounded-full border px-4 py-3 text-sm font-bold transition ${category === key ? 'border-[#0f172a] bg-[#0f172a] text-white' : 'border-black/15 bg-white text-[#475569] hover:bg-[#f5f8fb]'}`}>
+                  {label}
+                </button>
+              ))}
+            </div>
+            <p className="mb-6 text-sm text-[#64748b]" aria-live="polite" aria-atomic="true">{visibleProjects.length} / {projects.length} {t.countLabel}</p>
             <div className="grid gap-5 md:grid-cols-2">
-              {t.projects.map((project) => (
-                <article key={project.name} className="group rounded-2xl border border-black/10 bg-[#f5f8fb] p-6 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-black/10">
+              {visibleProjects.map((project) => (
+                <article key={project.name} className="group flex flex-col rounded-2xl border border-black/10 bg-[#f5f8fb] p-6 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-black/10">
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <p className="mb-3 inline-flex rounded-full bg-[#dbeafe] px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-[#075985]">
-                        {project.status}
+                        {t.statuses[project.status]}
                       </p>
                       <h3 className="text-2xl font-black tracking-tight">{project.name}</h3>
                     </div>
@@ -466,7 +352,7 @@ function App() {
                       <Rocket className="h-5 w-5" />
                     </span>
                   </div>
-                  <p className="mt-5 text-base leading-7 text-[#475569]">{project.summary}</p>
+                  <p className="mt-5 text-base leading-7 text-[#475569]">{project.summary[language]}</p>
                   <div className="mt-5 flex flex-wrap gap-2">
                     {project.stack.map((item) => (
                       <span key={item} className="rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-bold text-[#475569]">
@@ -474,11 +360,8 @@ function App() {
                       </span>
                     ))}
                   </div>
-                  <div className="mt-6 rounded-xl border border-black/10 bg-white p-4 text-sm font-semibold leading-6 text-[#334155]">
-                    <CheckCircle2 className="mr-2 inline h-4 w-4 text-[#0ea5e9]" />
-                    {project.impact}
-                  </div>
-                  <div className="mt-5 flex flex-wrap gap-3">
+
+                  <div className="mt-auto flex flex-wrap gap-3 pt-6">
                     {project.liveUrl && (
                       <a
                         href={project.liveUrl}
@@ -487,7 +370,7 @@ function App() {
                         className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#0f172a] px-4 py-2 text-sm font-black text-white transition hover:-translate-y-0.5"
                       >
                         <ExternalLink className="h-4 w-4" />
-                        {t.projectLinks.live}
+                        {t.projectLinks[project.linkType]}
                       </a>
                     )}
                     {project.repoUrl && (
@@ -501,9 +384,9 @@ function App() {
                         {t.projectLinks.repo}
                       </a>
                     )}
-                    {project.privateNote && (
+                    {!project.repoUrl && (
                       <span className="inline-flex items-center justify-center rounded-lg border border-black/10 bg-white/70 px-4 py-2 text-sm font-black text-[#64748b]">
-                        {project.privateNote}
+                        {t.privateNote}
                       </span>
                     )}
                   </div>
@@ -516,7 +399,7 @@ function App() {
         <section id="services" className="scroll-mt-24 px-5 py-20 sm:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl">
-              <p className="mb-3 text-sm font-black uppercase tracking-[0.22em] text-[#0ea5e9]">Services</p>
+              <p className="mb-3 text-sm font-black uppercase tracking-[0.22em] text-[#0ea5e9]">{language === 'es' ? 'Servicios' : 'Services'}</p>
               <h2 className="text-4xl font-black tracking-tight sm:text-5xl">{t.servicesTitle}</h2>
               <p className="mt-5 text-lg leading-8 text-[#64748b]">{t.servicesIntro}</p>
             </div>
@@ -558,12 +441,12 @@ function App() {
               <div className="grid aspect-[4/3] place-items-center rounded-xl bg-[#e0f2fe]">
                 <div className="text-center">
                   <BriefcaseBusiness className="mx-auto h-12 w-12 text-[#075985]" />
-                  <p className="mt-4 text-sm font-black uppercase tracking-[0.22em] text-[#075985]">Builder profile</p>
+                  <p className="mt-4 text-sm font-black uppercase tracking-[0.22em] text-[#075985]">{language === 'es' ? 'Perfil profesional' : 'Builder profile'}</p>
                 </div>
               </div>
             </div>
             <div>
-              <p className="mb-3 text-sm font-black uppercase tracking-[0.22em] text-[#0ea5e9]">About</p>
+              <p className="mb-3 text-sm font-black uppercase tracking-[0.22em] text-[#0ea5e9]">{language === 'es' ? 'Sobre mí' : 'About'}</p>
               <h2 className="text-4xl font-black tracking-tight sm:text-5xl">{t.aboutTitle}</h2>
               <p className="mt-6 text-xl leading-9 text-[#475569]">{t.about}</p>
             </div>
@@ -574,7 +457,7 @@ function App() {
           <div className="mx-auto max-w-7xl rounded-3xl bg-[#bae6fd] p-8 text-[#082f49] sm:p-12 lg:p-16">
             <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
               <div>
-                <p className="mb-3 text-sm font-black uppercase tracking-[0.22em] text-[#075985]">Contact</p>
+                <p className="mb-3 text-sm font-black uppercase tracking-[0.22em] text-[#075985]">{language === 'es' ? 'Contacto' : 'Contact'}</p>
                 <h2 className="max-w-3xl text-4xl font-black tracking-tight sm:text-6xl">{t.contactTitle}</h2>
                 <p className="mt-6 max-w-2xl text-lg leading-8 text-[#0c4a6e]">{t.contactBody}</p>
               </div>

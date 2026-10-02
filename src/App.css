@@ -19,3 +19,15 @@ a {
   background: #bae6fd;
   color: #0f172a;
 }
+
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #0284c7;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}
