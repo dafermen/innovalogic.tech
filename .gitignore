@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 .env
+# Generated from documentation-web/manifest.json during build
+/public/docs/
