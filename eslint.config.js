@@ -7,7 +7,7 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 export default [
   {
     ignores: [
-      'dist',
+      'dist', 'public/docs/**', 'documentation-web/vendor/**',
       'src/api',
       'src/components',
       'src/hooks',

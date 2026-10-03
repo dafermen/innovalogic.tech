@@ -1,0 +1,38 @@
+{
+  "project": "InnovaLogic",
+  "language": "en",
+  "output": "public/docs",
+  "application": "../../",
+  "documents": [
+    {
+      "id": "doc-1",
+      "source": "README.md",
+      "title": "Innovalogic.tech",
+      "section": "Product"
+    },
+    {
+      "id": "doc-2",
+      "source": "DOCUMENTATION.md",
+      "title": "InnovaLogic — Documentation map and maintenance",
+      "section": "Product"
+    }
+  ],
+  "images": [],
+  "paths": [
+    {
+      "id": "doc-1",
+      "label": "Discover the product",
+      "anchor": ""
+    },
+    {
+      "id": "doc-1",
+      "label": "Read the guide",
+      "anchor": "portfolio-maintenance"
+    },
+    {
+      "id": "doc-1",
+      "label": "Explore development",
+      "anchor": "local-development"
+    }
+  ]
+}

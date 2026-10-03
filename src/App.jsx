@@ -480,6 +480,7 @@ function App() {
       <footer className="border-t border-black/10 px-5 py-8 sm:px-8">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 text-sm text-[#64748b] md:flex-row md:items-center md:justify-between">
           <p>{t.footer}</p>
+          <a href="/docs/">{language === "es" ? "Documentación" : "Documentation"}</a>
           <div className="flex gap-3">
             <a href={`mailto:${email}`} aria-label="Email" className="grid h-10 w-10 place-items-center rounded-full border border-black/10 bg-white">
               <Mail className="h-4 w-4" />
